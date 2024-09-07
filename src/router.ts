@@ -40,7 +40,7 @@ const router: () => Promise<void> = async (): Promise<void> => {
 
   if (!match) {
     match = {
-      route: routes[routes.length - 1],
+      route: routes.find((route: IRoute): boolean => route.path === '/404') || routes[routes.length - 1],
       isMatch: true
     };
   }
