@@ -12,6 +12,9 @@ import getElement from './utils/get-element.util';
 import setClasses from './utils/set-classes.util';
 import sleep from './utils/sleep.util';
 
+// Base URL
+import viteConfig from '../vite.config'
+
 const navigateTo = (url: string): void => {
   history.pushState(null, '', url);
   router();
@@ -28,7 +31,7 @@ const router: () => Promise<void> = async (): Promise<void> => {
   const potentialMatches: IPotentialMatch[] = routes.map((route: IRoute): IPotentialMatch => {
     return {
       route: route,
-      isMatch: location.pathname === route.path
+      isMatch: location.pathname === `${viteConfig.base.substring(0, 7)}${route.path}`
     }
   });
 

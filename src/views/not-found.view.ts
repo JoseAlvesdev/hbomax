@@ -9,7 +9,7 @@ export default class NotFoundView extends AbstratctView {
   }
 
   async getHtml(): Promise<string> {
-    const url: string = '/views/not-found.view.html'
+    const url: string = '/hbomax/views/not-found.view.html'
     const resquest: string = await fetch(url)
       .then((data: Response): Promise<string> => data.text());
     

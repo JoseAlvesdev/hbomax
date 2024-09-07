@@ -7,7 +7,7 @@ export default class HomeView extends AbstratctView {
   }
 
   async getHtml(): Promise<string> {
-    const url: string = '/views/home.view.html';
+    const url: string = '/hbomax/views/home.view.html';
     const resquest: string = await fetch(url)
       .then((data: Response): Promise<string> => data.text())
 

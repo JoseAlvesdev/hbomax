@@ -10,7 +10,7 @@ export default class SignInView extends AbstratctView {
   }
 
   async getHtml(): Promise<string> {
-    const url: string = '/views/signin.view.html';
+    const url: string = '/hbomax/views/signin.view.html';
     const resquest: string = await fetch(url)
       .then((data: Response): Promise<string> => data.text());
     
