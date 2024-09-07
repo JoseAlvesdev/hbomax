@@ -1,4 +1,4 @@
-<img src="assets/images/readme-images/cover.png">
+<img src="/public/images/readme-images/cover.png">
 
 <h1 align="center">Site HBO Max</h1>
 <h4 align="center">Clone com modificações</h4>
@@ -7,20 +7,21 @@
   O projeto é um clone do site <a href="https://www.hbomax.com/br/pt">HBO Max</a>, com o intuito de reproduzir a interface, com algumas modificações, aplicando os temas abordados ao longo das aulas de CSS da plataforma da <a href="https://dio.me">Digital Innovation One</a>.
 </p>
 <p align="center">
-  O clone do site HBO Max serve como desafio para os alunos da plataforma testarem seus conhecimentos e colocarem em prática os recursos de HTML e CSS abordados nos cursos.
+  Eu utilizando como base o projeto da dio.me proposto pela Instrutora: Michele Ambrosio, implentei uma Single Page Aplication, utilizando-se de várias técnologias adicionais, como por exemplo a utilização de componentes nativos do JavaScript, também convenções de nomenclatura e estruturação.
 </p>
 
-<a href="https://micheleambrosio.github.io/hbomax/">
-  <img src="assets/images/readme-images/cover-2.png">
+<a href="https://josealvesdev.github.io/hbomax/">
+  <img src="/public/images/readme-images/cover-2.png">
 </a>
 
 ## 📎 Sumário
 
 - [✨ Features](#features)
 - [📦 Temas abordados](#topics)
-- [🏆 Desafio](#challenges)
-- [🌈 Demonstração](#demo)
-- [💻 Autora](#author)
+- [❗ Mixin](#mixin)
+- [🔡 Router](#router)
+- [✅ Deploy](#demo)
+- [💻 Autor](#author)
 
 <h2 id="features">✨ Features</h2>
 
@@ -50,97 +51,171 @@ Recursos CSS presentes no projeto:
 - Transições e animações
 - Tratamento de campos inválidos no formulário
 
-<h2 id="challenges">🏆 Desafio</h2>
+Melhorias na:
 
-Como parte do desafio final da Trilha de CSS, o desenvolvedor deve reproduzir [esse projeto](https://micheleambrosio.github.io/hbomax/), sem realizar uma consulta do código final do site, presente na branch `master` deste repositório.
+- Responsividade
+- Estruturação
+- nomenclaturas
 
-Para auxiliar na reprodução, utilize a branch `template-desafio`. Faça um fork do projeto em sua conta do GitHub.
+Implementações:
 
-Dentro da branch `template-desafio`, você encontrará na pasta `assets/images` todos os arquivos de imagens que você irá precisar para utilizar no projeto.
+- ViteJs
+- TypeScript
+- Web Components
+- SASS
+- SCSS
+- SPA
+- Página de não econtrada 404
 
-Caso deseje, adicione as variáveis CSS abaixo, que contém todas as cores e gradientes utilizados no projeto:
+Convenções utilizadas:
 
-```css
-  :root {
-    --primary-color: #020228;
-    --secondary-color: #ff00e5;
-    --tertiary-color: #b535f6;
-    --btn-bg-color-gradient: linear-gradient(
-      45deg,
-      #9b34ef 0%,
-      #490cb0 20%,
-      transparent 50%
-    );
-    --btn-link-bg-color: #fff;
-    --btn-link-color: #000;
-    --card-bg-color: linear-gradient(0deg, transparent, #3b1e63);
-    --divider-bg-color: linear-gradient(
-      90deg,
-      #5516ba,
-      rgba(255, 0, 229, 0.5) 80%
-    );
-    --nav-bg-color: rgba(0, 0, 0, 0.3);
-    --text-color: #fff;
-    --link-color: #9e86ff;
-    --form-bg-color: rgba(211, 211, 211, 0.06);
-    --form-field-bg-color: rgba(0, 0, 0, 0.2);
-    --form-field-border: 1px solid rgba(255, 255, 255, 0.7);
-    --form-field-placeholder: rgba(255, 255, 255, 0.7);
-    --form-field-error: rgb(255, 76, 76);
+- ITCSS
+- BEMIT
 
-    scroll-behavior: smooth;
+<h2 id="mixin">❗ Mixin utilizando SCSS</h2>
+
+Cria uma lista de URL's, com o `@each` itera item por item, e por fim foi criadas seis classes, utilizando a variável counter para definir a posição específica de cada card.
+
+```scss
+$urls: (
+  '/images/hbo-hover_0.webp',
+  '/images/MAX-Hover.webp',
+  '/images/DC-Hover.webp',
+  '/images/WB-Hover.webp',
+  '/images/CN-Hover.png',
+  '/images/UCL-Hover.webp'
+);
+
+@mixin generate-hover-backgrounds($urls) {
+  $counter: 1;
+
+  @each $url in $urls {
+    .c-contents__card:nth-child(#{$counter}):hover {
+      cursor: pointer;
+      background-image: url(#{$url});
+    }
+
+    $counter: $counter + 1;
   }
+}
 ```
 
-*A propriedade `scroll-behavior: smooth` irá fazer com que os links que levam para uma outra sessão do site, da mesma página, faça uma transição suave ao realizar a rolagem.*
+<h2 id="router">🔡 Router implementado</h2>
 
-Para implementar a barra de rolagem personalizada, como no exemplo, adicione na sua folha de estilos o seguinte trecho CSS:
+Router desenvolvido utilizando recursos nativos do JavaScript e do navegador.
 
-```css
-  /* Custom Scroll */
+```ts
+// Views
+import HomeView from './views/home.view';
+import NotFoundView from './views/not-found.view';
+import SignInView from "./views/signin.view";
 
-  ::-webkit-scrollbar {
-    width: 8px;
+// Interfaces
+import IRoute from "./interfaces/IRoute.interface";
+import IPotentialMatch from "./interfaces/IPotentialMatch.interface";
+
+// Utils
+import getElement from './utils/get-element.util';
+import setClasses from './utils/set-classes.util';
+import sleep from './utils/sleep.util';
+
+// Base URL
+import viteConfig from '../vite.config'
+
+const navigateTo = (url: string): void => {
+  history.pushState(null, '', url);
+  router();
+};
+
+const router: () => Promise<void> = async (): Promise<void> => {
+  const routes: IRoute[] = [
+    { path: "/", view: HomeView },
+    { path: "/signin", view: SignInView },
+    { path: '/404', view: NotFoundView }
+  ];
+
+  // Test each route potential match
+  const potentialMatches: IPotentialMatch[] = routes.map((route: IRoute): IPotentialMatch => {
+    return {
+      route: route,
+      isMatch: location.pathname === `${viteConfig.base.substring(0, 7)}${route.path}`
+    }
+  });
+
+  let match: IPotentialMatch | undefined = potentialMatches
+    .find((potentialMatch: IPotentialMatch): boolean => potentialMatch.isMatch);
+
+  if (!match) {
+    match = {
+      route: routes[routes.length - 1],
+      isMatch: true
+    };
   }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--tertiary-color);
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
-  }
-```
-
-O resultado final do projeto deve contemplar todas as [features](#features) presentes no <a href="https://micheleambrosio.github.io/hbomax/">resultado final</a>.
-
-As fontes utilizadas no projeto foram:
-
-- [Raleway](https://fonts.google.com/specimen/Raleway)
-- [Quicksand](https://fonts.google.com/specimen/Quicksand?query=quicksand)
   
-```css
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap");
+  const root: HTMLElement = getElement('#root');
+  const view = new match.route.view();
+
+  const init: () => Promise<void> = async (): Promise<void> => {
+    root.innerHTML = await view.getHtml();
+    setClasses(['main'], true, 'is-rendered');
+
+    const isRendered: boolean 
+      = getElement('main').classList.contains('is-rendered');
+
+    if (isRendered) {
+      getElement('#loader').classList.add('is-hidden');
+      setClasses(['max-navbar', 'max-footer'], true, 'is-visible');
+      await sleep(.3);
+      setClasses(['#root'], false, 'is-show');
+    }
+    
+    const route: string = match.route.path;
+
+    if (route !== '/') 
+      getElement('.ts-assign-link').setAttribute('data-link', '');
+    else 
+      getElement('.ts-assign-link').removeAttribute('data-link');
+  }
+
+  init();
+};
+
+window.addEventListener('popstate', router);
+
+document.addEventListener('DOMContentLoaded', (): void => {
+  document.body.addEventListener('click', (e: MouseEvent): void => {
+    const target = e.target as HTMLElement;
+    
+    if (target.matches('[data-link]')) {
+      e.preventDefault(); // Sempre prevenir o comportamento padrão
+      const currentUrl: string = window.location.href;
+      const linkUrl: string = (target as HTMLAnchorElement).href;
+      
+      if (currentUrl !== linkUrl) {
+        navigateTo(linkUrl);
+      } 
+    }
+  });
+
+  router();
+});
 ```
 
-*Para melhor orientação, assista ao vídeo de instruções do desafio, que está disponibilizado no Módulo 3 da Trilha de CSS.*
+[🔡 Inspiração](https://youtu.be/6BozpmSjk-Y?si=MAOlHY-lut2FtDAE)
+
+<h2 id="demo">✅ Deploy</h2>
+
+Você pode acessar ao resultado final do projeto [clicando aqui](https://josealvesdev.github.io/hbomax/).
 
 
-<h2 id="demo">🌈 Demonstração</h2>
-
-Você pode acessar ao resultado final do projeto [clicando aqui](https://micheleambrosio.github.io/hbomax/).
-
-
-<h2 id="author">💻 Autora</h2>
+<h2 id="author">💻 Autor</h2>
 <p>
-    <img align=left margin=10 width=80 src="https://avatars.githubusercontent.com/u/55519539?v=4"/>
-    <p>&nbsp&nbsp&nbspMichele Queiroz Ambrosio<br>
-    &nbsp&nbsp&nbsp<a href="http://instagram.com/programi_">Instagram</a>&nbsp;|&nbsp;<a href="https://github.com/micheleambrosio">GitHub</a>&nbsp;|&nbsp;<a href="https://www.linkedin.com/in/michele-ambrosio-a4899661/">LinkedIn</a>&nbsp;|&nbsp;<a href="https://www.twitch.tv/michele_ambrosio">Twitch</a></p>
+    <img align=left margin=10 width=80 src="https://avatars.githubusercontent.com/u/137122689?v=4"/>
+    <p>&nbsp&nbsp&nbspJose Alves<br>
+    &nbsp&nbsp&nbsp<a href="https://www.instagram.com/henrjos_/">Instagram</a>&nbsp;|&nbsp;<a href="https://github.com/JoseAlvesdev">GitHub</a>&nbsp;|&nbsp;<a href="https://www.linkedin.com/in/josé-alves-9b6134205">LinkedIn</a></p>
 </p>
 <br/><br/>
 <p>
 
 ---
-⌨️ com ❤️ por [Michele Ambrosio](https://github.com/micheleambrosio) 😊
+✔️ Por [Jose Alves](https://github.com/JoseAlvesdev) 🫡
