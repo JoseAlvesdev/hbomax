@@ -1,0 +1,16 @@
+#root {
+  visibility: hidden;
+  transform: translateY(-25px);
+  opacity: 0;
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+#root.is-show {
+  visibility: visible;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#root.is-show--exit {
+  transform: translateY(25px);
+}

@@ -1,0 +1,113 @@
+<!--
+https://www.max.com/br/pt
+https://micheleambrosio.github.io/hbomax/
+https://github.com/micheleambrosio/hbomax
+-->
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HBO Max</title>
+    <script defer type="module" src="./src/index.ts"></script>
+  </head>
+
+  <body>
+    <!-- ============================================================ -->
+    <!-- |  Navbar -->
+    <!-- ============================================================ -->
+    <max-navbar>
+      <a class="c-navbar__logo" slot="logo" href="/" data-link>
+        <img class="c-navbar__img ts-image-logo" src="/images/hbo-logo.svg" alt="logo da HBOMAX" />
+      </a>
+      <a class="c-navbar__link ts-assign-link" slot="link" href="/#c-subscription" data-link>assine agora</a>
+      <a class="c-navbar__link" slot="sign-link" href="/signin" data-link>entrar</a>
+    </max-navbar>
+    <!-- ============================================================ -->
+    <!-- |  Loader -->
+    <!-- ============================================================ -->
+    <div id="loader" class="o-loader-container o-flex-container">
+      <div class="c-loader"></div>
+    </div>
+    <!-- ============================================================ -->
+    <!-- |  Root -->
+    <!-- ============================================================ -->
+    <div id="root"></div>
+    <!-- ============================================================ -->
+    <!-- |  Footer -->
+    <!-- ============================================================ -->
+    <max-footer>
+      <!-- Footer Links -->
+      <a
+        class="c-footer__link"
+        slot="link"
+        href="https://www.hbomax.com/br/pt/sitemap"
+        >agora na hbo max</a
+      >
+      <a
+        class="c-footer__link"
+        slot="link"
+        href="https://www.hbomax.com/br/pt/coming-soon"
+        >em breve</a
+      >
+      <a
+        class="c-footer__link"
+        slot="link"
+        href="https://www.hbomax.com/br/pt/feature"
+      >
+        Filme em destaque
+      </a>
+      <a
+        class="c-footer__link"
+        slot="link"
+        href="https://www.hbomax.com/br/pt/series"
+        >Séries</a
+      >
+      <a class="c-footer__link" slot="link" href="https://help.hbomax.com/br"
+        >Ajuda</a
+      >
+      <!-- Copyright -->
+      <p class="c-footer__copyright" slot="copyright">
+        © 2024 WarnerMedia Direct Latin America, LLC. Todos os direitos
+        reservados. HBO Max é usado sob licença.
+      </p>
+      <!-- Social Media Links -->
+      <a
+        class="c-footer__social-link"
+        slot="social-link"
+        href="https://www.facebook.com/StreamMaxBR"
+        target="_blank"
+      >
+        <img src="/images/fb_0.png" alt="Facebook" />
+      </a>
+      <a
+        class="c-footer__social-link"
+        slot="social-link"
+        href="https://www.twitter.com/StreamMaxLA"
+        target="_blank"
+      >
+        <img src="/images/twitter_0.png" alt="Twitter" />
+      </a>
+      <a
+        class="c-footer__social-link"
+        slot="social-link"
+        href="https://www.instagram.com/StreamMaxBR"
+        target="_blank"
+      >
+        <img src="/images/instagram_0.png" alt="Instagram" />
+      </a>
+      <a
+        class="c-footer__social-link"
+        slot="social-link"
+        href="https://www.youtube.com/@StreamMaxLA"
+        target="_blank"
+      >
+        <img src="/images/youtube_0.png" alt="Youtube" />
+      </a>
+    </max-footer>
+  </body>
+
+</html>

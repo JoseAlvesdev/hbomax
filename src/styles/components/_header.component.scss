@@ -1,0 +1,135 @@
+.c-header {
+  margin-top: var(--54px);
+  padding: 6.25rem 0 18.75rem;
+  background-image: var(--header-bg-color);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite alternate;
+  position: relative;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 15.625rem;
+    position: absolute;
+    bottom: 0;
+    background-image: linear-gradient(to top,var(--primary-color), transparent);
+  }
+
+  // Context
+  .c-header__channels {
+    gap: var(--24px);
+  }
+
+  .o-text-small {
+    max-width: 18.75rem;
+    text-align: center;
+  }
+}
+
+.c-header__content {
+  padding: 0 var(--40px);
+  flex-direction: column;
+  gap: var(--40px);
+  align-items: center;
+}
+
+.c-header__channels {
+  justify-content: center;
+}
+
+.c-header__channel {
+  object-fit: contain;
+}
+
+.c-header__title {
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+.c-header__title--light {
+  display: block;
+  font-weight: lighter;
+  font-size: var(--32px);
+}
+
+.c-divider {
+  width: 70%;
+  max-width: 700px;
+  height: 5px;
+  background: var(--divider-bg-color);
+}
+
+.c-offer {
+  font-size: var(--20px);
+  text-align: center;
+}
+
+.c-offer__price {
+  font-size: var(--40px);
+  font-weight: 700;
+}
+
+.c-header__button {
+  font-size: var(--16px);
+  line-height: calc(var(--18px));
+  animation: wiggle 2.2s linear infinite;
+
+  &:hover {
+    animation: pause;
+  }
+}
+
+// Animations
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  } 50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  10% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(-15deg);
+  }
+  20% {
+    transform: rotate(10deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  30% {
+    transform: rotate(10deg);
+  }
+  35% {
+    transform: rotate(-10deg);
+  }
+  40%,
+  100% {
+    transform: rotate(0);
+  }
+}
+
+// Responsive
+@media screen and (max-width: 576px) {
+  .c-header {
+    margin-top: 134px;
+    background-size: 400% 400%;
+    animation: gradient 8s ease infinite alternate;
+  }
+
+  .c-header__channels {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 334px) {
+  .c-header {
+    margin-top: 164px;
+  }
+}

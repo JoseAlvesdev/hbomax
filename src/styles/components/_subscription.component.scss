@@ -1,0 +1,127 @@
+.c-subscription {
+  background-image: url("/images/background-movies-series.png");
+  background-size: cover;
+
+  // Context
+  .o-wrapper {
+    max-width: 1200px;
+    padding: var(--24px);
+  }
+}
+
+.c-subscription__title {
+  text-align: center;
+}
+
+.c-subscription__plans {
+  justify-content: space-around;
+  gap: var(--80px);
+  margin: var(--40px) 0;
+  perspective: 2000px;
+  perspective-origin: top;
+}
+
+.c-subscription__card {
+  padding: var(--40px) var(--60px);
+  background: var(--card-bg-color);
+  border-radius: var(--8px);
+  min-height: 600px;
+  justify-content: space-between;
+  flex-direction: column;
+  transition: transform 1s ease-in-out;
+}
+
+.c-subscription__plan {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--20px);
+  margin-bottom: 16px;
+}
+
+.c-subscription__plans:has(.c-subscription__card:nth-child(1):hover)
+  .c-subscription__card:nth-child(2) {
+  transform: rotateY(-45deg);
+}
+
+.c-subscription__plans:has(.c-subscription__card:nth-child(2):hover)
+  .c-subscription__card:nth-child(1) {
+  transform: rotateY(45deg);
+}
+
+.c-subscription__description {
+  text-align: left;
+  list-style: none;
+  font-size: var(--20px);
+  margin-bottom: var(--14px);
+  padding-left: var(--14px);
+  line-height: calc(var(--20px) * 1.6);
+}
+
+.c-subscription__price {
+  font-size: var(--32px);
+  font-family: "Raleway", sans-serif;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+.subscription__price .o-text-small {
+  color: var(--text-color);
+}
+
+.c-subscription__description::marker {
+  content: "+";
+  font-size: var(--32px);
+  margin: 0 var(--8px) 0 0;
+}
+
+// Responsive
+@media screen and (max-width: 1200px) {
+  .c-subscription__plans {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--40px);
+  }
+
+    .c-subscription__card {
+      max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+  .c-subscription__card {
+    padding: var(--40px);
+  }
+
+    .c-subscription__plan {
+      flex-direction: column;
+      align-items: center;
+    }
+
+  .c-subscription__price {
+    font-size: var(--24px);
+  }
+
+    .c-subscription__description {
+      font-size: var(--16px);
+      line-height: calc(var(--16px) * 1.5);
+    }
+
+  .c-subscription__description::marker {
+    font-size: var(--24px);
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .c-subscription__card {
+    padding: var(--32px);
+  }
+}
+
+@media (pointer: coarse) {
+  .c-subscription__plans:has(.c-subscription__card:nth-child(1):hover)
+      .c-subscription__card:nth-child(2),
+    .c-subscription__plans:has(.c-subscription__card:nth-child(2):hover)
+      .c-subscription__card:nth-child(1) {
+    transform: none;
+  }
+}

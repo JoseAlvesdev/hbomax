@@ -1,0 +1,16 @@
+.o-flex-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.o-grid-container {
+  display: grid;
+  gap: 1rem;
+}
+
+.o-loader-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

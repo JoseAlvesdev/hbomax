@@ -1,0 +1,34 @@
+.c-navbar__logo {
+  display: inline-block;
+}
+
+.c-navbar__img {
+  height: var(--26px);
+  pointer-events: none;
+}
+
+.c-navbar__link {
+  padding: var(--8px) var(--26px);
+  
+}
+
+.c-navbar__link[slot="link"] {
+  background-color: var(--tertiary-color);
+  margin-right: var(--24px);
+}
+
+.c-navbar__link[slot="link"]:hover {
+  background-color: var(--btn-link-bg-color);
+  color: var(--btn-link-color);
+}
+
+// Responsive
+@media screen and (max-width: 576px) {
+  .c-navbar__link[slot="link"] {
+    margin-right: 0;
+  }
+
+  .c-navbar__img {
+    height: var(--20px);
+  }
+}

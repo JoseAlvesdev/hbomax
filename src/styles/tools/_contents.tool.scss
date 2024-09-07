@@ -1,0 +1,21 @@
+$urls: (
+  '/images/hbo-hover_0.webp',
+  '/images/MAX-Hover.webp',
+  '/images/DC-Hover.webp',
+  '/images/WB-Hover.webp',
+  '/images/CN-Hover.png',
+  '/images/UCL-Hover.webp'
+);
+
+@mixin generate-hover-backgrounds($urls) {
+  $counter: 1;
+
+  @each $url in $urls {
+    .c-contents__card:nth-child(#{$counter}):hover {
+      cursor: pointer;
+      background-image: url(#{$url});
+    }
+
+    $counter: $counter + 1;
+  }
+}

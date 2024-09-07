@@ -1,0 +1,35 @@
+@import '../components/login.component';
+
+.signin {
+  background-image: url("/images/background-movies-series.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.c-signin-navbar {
+  position: relative;
+}
+
+.c-signin-main {
+  justify-content: center;
+  align-items: center;
+  font-family: "Quicksand", cursive;
+  width: 100%;
+  height: 70vh;
+  padding: var(--24px);
+}
+
+// Responsive
+@media screen and (max-width: 768px) {
+  .c-signin-main {
+    height: 50vh;
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .c-signin-main {
+    margin-top: var(--40px);
+    height: auto;
+  }
+}

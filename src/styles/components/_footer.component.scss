@@ -1,0 +1,23 @@
+.c-footer__link {
+  margin: 0 var(--14px);
+}
+
+.c-footer__link:hover {
+  color: var(--text-color);
+}
+
+.c-footer__copyright {
+  margin: var(--16px) 0;
+}
+
+.c-footer__social-link {
+  padding: var(--8px);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .c-footer__link {
+    margin: 0 var(--14px) var(--16px);
+    line-height: calc(var(--14px) * 1.5);
+  }
+}

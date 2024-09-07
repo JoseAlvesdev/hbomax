@@ -1,0 +1,69 @@
+.c-contents {
+  margin: 100px auto;
+
+  // Context
+  .o-wrapper {
+    max-width: 1200px;
+    padding: var(--24px);
+  }
+}
+
+.c-contents_card-container {
+  gap: var(--40px);
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: var(--40px);
+}
+
+.c-contents__title {
+  text-align: center;
+}
+
+.c-contents__card {
+  border-radius: 16px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid transparent;
+  transition: transform 0.8s, background 0.8s, border 1s;
+}
+
+.c-contents__card:hover {
+  transform: scale(1.05);
+  border: 2px solid var(--tertiary-color);
+}
+
+.c-contents__card:hover .c-contents__image {
+  opacity: 0;
+}
+
+.c-contents__image {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 2s;
+}
+
+@include generate-hover-backgrounds($urls);
+
+// Responsive
+
+
+@media screen and (max-width: 992px) {
+  .c-contents_card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .c-contents_card-container {
+    grid-template-columns: repeat(6, 100%);
+    grid-auto-flow: column;
+    overflow: auto hidden;
+  }
+}
+
+@media (pointer: coarse) {
+  .c-contents__card:hover {
+    transform: none;
+  }
+}

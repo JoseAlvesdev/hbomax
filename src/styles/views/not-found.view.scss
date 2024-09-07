@@ -1,0 +1,21 @@
+@import '../components/info.component';
+
+.c-not-found-navbar {
+  position: relative;
+}
+
+.c-not-found-main {
+  height: 50vh;
+  justify-content: center;
+  align-items: flex-end;
+  padding: var(--24px);
+}
+
+// Responsive
+@media screen and (max-width: 576px) {
+  .c-not-found-main {
+    margin-top: var(--40px);
+    height: auto;
+  }
+}
+

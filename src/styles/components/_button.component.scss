@@ -1,0 +1,29 @@
+.c-button {
+  padding: var(--16px) var(--40px);
+  background-color: var(--tertiary-color);
+  border-radius: 500px;
+  font-weight: 700;
+  color: var(--text-color);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: var(--14px);
+  line-height: var(--16px);
+}
+
+.c-button.c-button--gradient {
+  background: var(--btn-bg-color-gradient);
+  outline: 3px solid transparent;
+  transition: background 1s, outline 1s, transform 1s;
+  background-size: 250%;
+}
+
+.c-button.c-button--gradient:hover {
+  background-color: transparent;
+  background-position: 100%;
+  outline: 2px solid var(--secondary-color);
+  transform: scale(1.05);
+}
