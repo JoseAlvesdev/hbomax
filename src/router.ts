@@ -103,7 +103,3 @@ document.addEventListener('DOMContentLoaded', (): void => {
 
   router(); // Chama o router na inicialização
 });
-
-
-
-
